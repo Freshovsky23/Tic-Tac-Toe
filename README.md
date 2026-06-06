@@ -31,7 +31,7 @@ See the project in action on YouTube:
 #### 📺 LCD 20x4 I2C Connection
 | LCD I2C Pin | ESP32 GPIO |
 |-------------|------------|
-| VCC         | 5V         |
+| VCC         | 3.3V         |
 | GND         | GND        |
 | SDA         | GPIO 21    |
 | SCL         | GPIO 22    |
