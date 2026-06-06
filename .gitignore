@@ -1,0 +1,36 @@
+# --- Arduino IDE ---
+*.bmp
+*.ico
+*.png
+*.gif
+*.jpg
+*.jpeg
+build/
+bin/
+layout/
+*.local.properties
+
+# --- PlatformIO ---
+.pio/
+.pioenvs/
+.piolibdeps/
+.clang_complete
+.gcc-flags.json
+.splintrc
+
+# --- Visual Studio Code ---
+.vscode/
+!.vscode/extensions.json
+.history/
+*.log
+
+# --- Compilation outputs ---
+*.hex
+*.elf
+*.bin
+*.o
+*.d
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
