@@ -9,10 +9,10 @@ See the project in action on YouTube:
 ---
 
 ## 🛠️ Hardware Requirements
-* **Microcontroller:** ESP32 (e.g., ESP32 NodeMCU)
+* **Microcontroller:** ESP32 (e.g., ESP32 NodeMCU-32S)
 * **Display:** LCD 20x4 with an I2C interface adapter (PCF8574)
 * **Input:** 4x4 Membrane Matrix Keypad
-* **Connecting Wires & Breadboard**
+* **Custom Baseboard PCB** (or Connecting Wires & Breadboard)
 
 ### Pin Mapping
 
@@ -31,32 +31,36 @@ See the project in action on YouTube:
 #### 📺 LCD 20x4 I2C Connection
 | LCD I2C Pin | ESP32 GPIO |
 |-------------|------------|
-| VCC         | 3.3V         |
+| VCC         | 3.3V (VIN)   |
 | GND         | GND        |
 | SDA         | GPIO 21    |
 | SCL         | GPIO 22    |
 
 ---
 
+## 🗺️ Custom PCB Design
+
+To eliminate messy breadboard wiring and create a durable, standalone gaming device, a dedicated dual-layer custom PCB baseboard was designed using **KiCad**. 
+
+### Features:
+* **Socketed MCU:** The board utilizes female pin headers, allowing the ESP32 NodeMCU to be easily plugged in or removed.
+* **Clean Peripherals Connection:** Dedicated `1x08` and `1x04` pin headers are placed near the edges for straightforward ribbon cable routing from the keypad and LCD.
+* **Optimized Power Delivery:** Safe 5V routing directly to the LCD backpack to ensure clear screen contrast without stressing the ESP32's internal 3.3V regulator.
+* **Ground Plane:** Full top and bottom copper pour for noise reduction and stable operation.
+
+The complete KiCad design files can be found in the [`hardware/`](./hardware) directory.
+
+### 🖼️ 3D Render Preview:
+![Tic-Tac-Toe PCB Baseboard](hardware/tic.png)
+
+---
+
 ## 🕹️ Game Rules & Controls
 1. **Starting the Game:** The game boots up automatically with player **'X'** making the first move.
 2. **Making a Move:** Use numeric keys **1 to 9** on the keypad to select a position on the 3x3 grid:
-1 | 2 | 3
-4 | 5 | 6
-7 | 8 | 9
-3. **Resetting the Game:** Press the **`*`** key at any moment to clear the board, reset scores, and start a new match.
-4. **Winning/Draw:** The system continuously evaluates the board state. If a player completes a row, column, or diagonal, the winner is declared immediately on the screen, and further moves are locked until a reset. If all spaces are filled with no winner, a **DRAW!** is announced.
-
----
-
-## 💻 Software & Libraries Used
-This project is written in C++ using the Arduino core framework. It relies on the following libraries:
-* `Wire.h` (Built-in I2C communication)
-* `LiquidCrystal_I2C` by Frank de Brabander (LCD management)
-* `Keypad` by Mark Stanley, Alexander Brevig (Matrix keypad scanning)
-
----
-
-## 👥 Author
-* **GitHub:** [@Freshovsky23](https://github.com/Freshovsky23)
-* **Email:** Heilman.Wiktor23@gmail.com
+   ```text
+   1 | 2 | 3
+   ---------
+   4 | 5 | 6
+   ---------
+   7 | 8 | 9
